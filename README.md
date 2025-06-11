@@ -32,6 +32,7 @@
   - Optical Flow용 CNN
 - **Softmax Score Ensemble**을 통해 최종 결과 도출
 - 최종 정확도: **95.42%**
+![image](https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00)
 
 ### 적용 기법
 - SimpleCNN 기반
@@ -39,10 +40,6 @@
 - CBAM (성능 저하로 최종 제외)
 
 ## 웹 구현 (Flask 기반)
-
-
-Uploading 미디어1.mp4…
-
 
 
 ### 비디오 분석
