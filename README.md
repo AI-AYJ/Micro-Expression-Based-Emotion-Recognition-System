@@ -11,7 +11,6 @@
 
 <img width="863" alt="image" src="https://github.com/user-attachments/assets/fd9aa68c-2066-4422-aaf1-670a94ea7b31" />
 
-
 ## 🧾 데이터셋
 - **CASME II**
   - 26명의 피실험자, 247개 시퀀스, 200 fps
