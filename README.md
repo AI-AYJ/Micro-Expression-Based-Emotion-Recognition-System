@@ -39,7 +39,9 @@
 - CBAM (성능 저하로 최종 제외)
 
 ## 웹 구현 (Flask 기반)
-![image](https://github.com/user-attachments/assets/09141144-8ab9-4800-851f-e6ef22f4dda1)
+
+
+Uploading 미디어1.mp4…
 
 
 
