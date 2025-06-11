@@ -32,7 +32,7 @@
   - Optical Flow용 CNN
 - **Softmax Score Ensemble**을 통해 최종 결과 도출
 - 최종 정확도: **95.42%**
-![image](https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00)
+<img src="https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00" width="300">
 
 ### 적용 기법
 - SimpleCNN 기반
