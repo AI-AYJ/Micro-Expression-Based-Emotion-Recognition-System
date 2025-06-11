@@ -9,6 +9,9 @@
 - 비디오 및 웹캠 입력을 통한 감정 예측 기능 구현
 - 감정 변화 로그와 통계를 웹에서 실시간으로 제공
 
+<img width="863" alt="image" src="https://github.com/user-attachments/assets/fd9aa68c-2066-4422-aaf1-670a94ea7b31" />
+
+
 ## 🧾 데이터셋
 - **CASME II**
   - 26명의 피실험자, 247개 시퀀스, 200 fps
