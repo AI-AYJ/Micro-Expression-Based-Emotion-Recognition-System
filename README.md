@@ -18,7 +18,7 @@
   - 26명의 피실험자, 247개 시퀀스, 200 fps
   - 감정 클래스: happiness, surprise, repression, disgust, sadness
   - 제거 클래스: others, fear (데이터 불균형 및 정의 모호성)
-  - 주요 프레임: Onset, Apex, Offset
+  - 주요 프레임: Onset (미세표정이 시작되는 프레임), Apex (미세표정이 가장 강한 프레임), Offset (미세표정이 끝나는 프레임)
 
 ## 전처리
 - Others, Fear 클래스 제거
@@ -39,6 +39,9 @@
 - CBAM (성능 저하로 최종 제외)
 
 ## 웹 구현 (Flask 기반)
+
+
+
 ### 비디오 분석
 - 대표 프레임 추출
 - 감정 변화 통계 제공:
