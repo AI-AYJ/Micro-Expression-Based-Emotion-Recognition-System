@@ -41,8 +41,6 @@
 
 ## 웹 구현 (Flask 기반)
 
-![image](https://github.com/user-attachments/assets/cb668d3d-3ac6-44a4-ae36-63b9c968b7b7)
-
 ### 비디오 분석
 - 대표 프레임 추출
 - 감정 변화 통계 제공:
