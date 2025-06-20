@@ -1,4 +1,4 @@
-# Micro-Expression-Based-Emotion-Recognition-System
+![image](https://github.com/user-attachments/assets/93e184a6-5e32-482f-bc6f-8cdb18b3db80)# Micro-Expression-Based-Emotion-Recognition-System
 
 ## 개요
 이 프로젝트는 **얼굴 미세표정(Facial Micro-Expressions)** 을 분석하여 사람의 감정을 인식하는 딥러닝 기반 시스템입니다.
@@ -24,15 +24,20 @@
 - Others, Fear 클래스 제거
 - Apex Frame 추출
 - Onset → Apex 구간 Optical Flow 계산
-  <img src="https://github.com/user-attachments/assets/ce1ee824-050c-40af-a08a-fc985a34f320" width="300">
-
-
 - 데이터 증강: Random Affine 변환, 수평 뒤집기 등
 
 ## 모델 구성
 - Dual CNN 구조:  
   - Apex Frame용 CNN  
   - Optical Flow용 CNN
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1f27533d-d70b-40a8-ba42-1d1b65f9b59f
+" width="45%" />
+  <img src="https://github.com/user-attachments/assets/9f2ee7d7-d6ba-4099-aa46-60ec47e91dec
+" width="45%" />
+</p>
+ 
 - **Softmax Score Ensemble**을 통해 최종 결과 도출
 - 최종 정확도: **95.42%**
 <img src="https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00" width="300">
