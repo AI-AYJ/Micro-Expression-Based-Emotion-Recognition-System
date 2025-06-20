@@ -26,8 +26,8 @@
 
 - Apex Frame 추출
 - Onset → Apex 구간 Optical Flow 계산
-- 데이터 증강: Random Affine 변환, 수평 뒤집기 등
-
+- 데이터 증강: HorizontalFlip: Flip(p=0.3) + RandomAffine: translate = (0.02, 0.02)
+- 
 ## 모델 구성
 - Dual CNN 구조:  
   - Apex Frame용 CNN  
