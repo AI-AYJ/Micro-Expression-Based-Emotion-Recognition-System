@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/93e184a6-5e32-482f-bc6f-8cdb18b3db80)# Micro-Expression-Based-Emotion-Recognition-System
+# Micro-Expression-Based-Emotion-Recognition-System
 
 ## 개요
 이 프로젝트는 **얼굴 미세표정(Facial Micro-Expressions)** 을 분석하여 사람의 감정을 인식하는 딥러닝 기반 시스템입니다.
