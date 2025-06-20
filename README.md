@@ -22,7 +22,7 @@
 
 ## 전처리
 - Others, Fear 클래스 제거 (Others:애매한 클래스, Fear:극소수의 데이터 → 불균형이 일어날 수 있음)
- <img src="https://github.com/user-attachments/assets/ad4e7794-96a7-4d07-8bbe-db72245bdd6d" width="200" />
+ <img src="https://github.com/user-attachments/assets/ad4e7794-96a7-4d07-8bbe-db72245bdd6d" width="400" />
 
 - Apex Frame 추출
 - Onset → Apex 구간 Optical Flow 계산
@@ -33,12 +33,12 @@
   - Apex Frame용 CNN  
   - Optical Flow용 CNN
   <br><br>
-  <img src="https://github.com/user-attachments/assets/1f27533d-d70b-40a8-ba42-1d1b65f9b59f" width="200" hspace="20" />
-  <img src="https://github.com/user-attachments/assets/9f2ee7d7-d6ba-4099-aa46-60ec47e91dec" width="200" />
+  <img src="https://github.com/user-attachments/assets/1f27533d-d70b-40a8-ba42-1d1b65f9b59f" width="300" hspace="20" />
+  <img src="https://github.com/user-attachments/assets/9f2ee7d7-d6ba-4099-aa46-60ec47e91dec" width="300" />
 
 - **Softmax Score Ensemble**을 통해 최종 결과 도출
 - 최종 정확도: **95.42%**
-<img src="https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00" width="300">
+<img src="https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00" width="400">
 
 ### 적용 기법
 - SimpleCNN 기반
