@@ -22,7 +22,7 @@
 
 ## 전처리
 - Others, Fear 클래스 제거 (Others:애매한 클래스, Fear:극소수의 데이터 → 불균형이 일어날 수 있음)
- ![image](https://github.com/user-attachments/assets/ad4e7794-96a7-4d07-8bbe-db72245bdd6d)
+ <img src="https://github.com/user-attachments/assets/ad4e7794-96a7-4d07-8bbe-db72245bdd6d" width="200" />
 
 - Apex Frame 추출
 - Onset → Apex 구간 Optical Flow 계산
