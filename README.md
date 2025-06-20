@@ -32,8 +32,7 @@
 - Dual CNN 구조:  
   - Apex Frame용 CNN  
   - Optical Flow용 CNN
-    ![image](https://github.com/user-attachments/assets/c6000b6e-8753-41cc-a9cc-4394ebd0eb8d)
-
+   
   <br><br>
   <img src="https://github.com/user-attachments/assets/1f27533d-d70b-40a8-ba42-1d1b65f9b59f" width="300" hspace="20" />
   <img src="https://github.com/user-attachments/assets/9f2ee7d7-d6ba-4099-aa46-60ec47e91dec" width="300" />
