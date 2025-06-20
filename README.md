@@ -21,7 +21,9 @@
   - 주요 프레임: Onset (미세표정이 시작되는 프레임), Apex (미세표정이 가장 강한 프레임), Offset (미세표정이 끝나는 프레임)
 
 ## 전처리
-- Others, Fear 클래스 제거
+- Others, Fear 클래스 제거 (Others:애매한 클래스, Fear:극소수의 데이터 → 불균형이 일어날 수 있음)
+ ![image](https://github.com/user-attachments/assets/ad4e7794-96a7-4d07-8bbe-db72245bdd6d)
+
 - Apex Frame 추출
 - Onset → Apex 구간 Optical Flow 계산
 - 데이터 증강: Random Affine 변환, 수평 뒤집기 등
