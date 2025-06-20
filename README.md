@@ -30,12 +30,9 @@
 - Dual CNN 구조:  
   - Apex Frame용 CNN  
   - Optical Flow용 CNN
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/1f27533d-d70b-40a8-ba42-1d1b65f9b59f"style="width:30%; margin-right:20%;" />
+  <img src="https://github.com/user-attachments/assets/1f27533d-d70b-40a8-ba42-1d1b65f9b59f" style="width:30%; margin-right:20%;" />
   <img src="https://github.com/user-attachments/assets/9f2ee7d7-d6ba-4099-aa46-60ec47e91dec" style="width:30%;" />
-</p>
- 
+
 - **Softmax Score Ensemble**을 통해 최종 결과 도출
 - 최종 정확도: **95.42%**
 <img src="https://github.com/user-attachments/assets/b89030be-8406-4309-a901-11600125ab00" width="300">
