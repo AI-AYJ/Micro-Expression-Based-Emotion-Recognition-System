@@ -24,7 +24,8 @@
 - Others, Fear 클래스 제거
 - Apex Frame 추출
 - Onset → Apex 구간 Optical Flow 계산
-  ![Uploading image.png…]()
+  ![image](https://github.com/user-attachments/assets/ce1ee824-050c-40af-a08a-fc985a34f320)
+
 
 - 데이터 증강: Random Affine 변환, 수평 뒤집기 등
 
