@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>미세표정 감정 분석 시스템 😊</title>
+  <!-- 구글 폰트 -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- 공통 스타일시트 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <!-- 상단 제목 + 구분선 (필요 없으면 <div class="divider"> 삭제) -->
+  <h1>미세표정 감정 분석 시스템 <span style="font-size: 1.2em;">😊</span></h1>
+  <div class="divider"></div>
+
+  <!-- 첫 번째 카드: 업로드 폼 | 예시 이미지 -->
+  <div class="card symmetric-card">
+    <!-- 왼쪽: 업로드 폼 -->
+    <div class="card-content left">
+      <form class="upload-form" action="/predict" method="post" enctype="multipart/form-data">
+        <label for="file">🎥 비디오를 업로드해주세요.</label>
+        <input type="file" name="file" id="file" accept="video/*" required />
+        <button type="submit" class="btn-gradient">예측하기</button>
+      </form>
+    </div>
+    <!-- 오른쪽: 예시 이미지 -->
+    <div class="card-content right">
+      <img
+        src="{{ url_for('static', filename='images/video_example.png') }}"
+        alt="비디오 예측 예시"
+        class="card-image"
+      />
+    </div>
+  </div>
+
+  <!-- 두 번째 카드: 예시 이미지 | 웹캠 폼 -->
+  <div class="card symmetric-card">
+    <!-- 왼쪽: 예시 이미지 -->
+    <div class="card-content left">
+      <img
+        src="{{ url_for('static', filename='images/webcam_example.png') }}"
+        alt="웹캠 예측 예시"
+        class="card-image"
+      />
+    </div>
+    <!-- 오른쪽: 웹캠 실행 폼 -->
+    <div class="card-content right">
+      <form class="webcam-form" action="/webcam" method="post">
+        <label>🤖 웹캠 (실시간 분석)</label>
+        <button type="submit" class="btn-gradient">웹캠 실행</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

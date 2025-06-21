@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>감정 분석 결과</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #e6ecf2);
+            text-align: center;
+            padding: 60px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .divider {
+            width: 70%;
+            height: 4px;
+            background: white;
+            opacity: 0.8;
+            margin: 20px auto 40px;
+            border-radius: 6px;
+        }
+        .result-box {
+            background-color: #fefefe;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            font-size: 20px;
+        }
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        .preview {
+            margin-top: 30px;
+        }
+        .preview img, .preview video {
+            width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        .stats-box {
+            margin-top: 30px;
+            font-size: 17px;
+            text-align: left;
+        }
+        .log-list {
+            text-align: left;
+            margin-top: 20px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .log-list ul {
+            padding-left: 20px;
+        }
+        .back-button {
+            margin-top: 40px;
+            display: inline-block;
+            font-size: 18px;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>감정 분석 결과 ✅</h1>
+    <div class="divider"></div>
+    <div class="result-box">
+        <div class="emoji">{{ emoji }}</div>
+        {% if preview_image %}
+        <div class="preview">
+            <p style="font-size: 16px; color: #555;">대표 프레임</p>
+            <img src="{{ url_for('static', filename=preview_image) }}" alt="대표 프레임 이미지">
+        </div>
+        {% endif %}
+        {% if video_file %}
+        <div class="preview" style="margin-top: 30px;">
+            <p style="font-size: 16px; color: #555;">업로드한 비디오</p>
+            <video controls>
+                <source src="{{ url_for('static', filename=video_file) }}" type="video/mp4">
+                브라우저가 비디오를 지원하지 않습니다.
+            </video>
+        </div>
+        {% endif %}
+        <div class="stats-box">
+            <p>🔁 총 감정 변화 횟수: <strong>{{ stats.total_changes }}</strong> 회</p>
+            <p>⚡ 미세표정 감지 횟수: <strong>{{ stats.micro_count }}</strong> 회</p>
+            <p>📊 미세표정 비율: <strong>{{ stats.percent }}%</strong></p>
+        </div>
+        <div class="log-list">
+            <h3>📜 감정 변화 로그</h3>
+            <ul>
+                {% for line in stats.log %}
+                    <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <a href="/" class="back-button">← 처음 화면으로 돌아가기</a>
+</body>
+</html>

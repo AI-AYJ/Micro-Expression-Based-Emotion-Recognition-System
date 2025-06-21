@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>실시간 감정 분석</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #e2e8ee, #f9fafc);
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        #video-box {
+            display: inline-block;
+            padding: 16px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        #video-feed {
+            width: 640px;
+            height: 480px;
+            border-radius: 12px;
+        }
+        #emotion {
+            font-size: 2em;
+            margin: 20px auto;
+            background: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        #micro {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+            height: 30px;
+        }
+        #stats {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #log {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+        #log div {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        #face-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 80, 80, 0.95);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>📷 실시간 웹캠 감정 분석</h1>
+
+    <!-- 얼굴 미검출 팝업 -->
+    <div id="face-alert">얼굴을 화면에 비춰주세요 ❌</div>
+
+    <div id="video-box">
+        <!-- 실시간 비디오 -->
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="웹캠 영상 스트리밍 안됨">
+    </div>
+
+    <!-- 실시간 감정 -->
+    <div id="emotion">{{ expression }}</div>
+
+    <!-- 미세표정 감지 알림 -->
+    <div id="micro"></div>
+
+    <!-- 미세표정 통계 -->
+    <div id="stats">
+        총 감정 변화 횟수: <span id="total_changes">0</span>회<br>
+        미세표정 감지 횟수: <span id="micro_count">0</span>회<br>
+        미세표정 비율: <span id="micro_percent">0%</span>
+    </div>
+
+    <!-- 감정 지속 로그 -->
+    <div id="log">
+        <div>감정 로그 로딩 중...</div>
+    </div>
+
+    <script>
+        // 현재 감정 상태 계속 불러오기
+        setInterval(() => {
+            fetch("/current_expression")
+                .then(res => res.json())
+                .then(data => {
+                    const emotionDiv = document.getElementById("emotion");
+                    const faceAlert = document.getElementById("face-alert");
+                    emotionDiv.innerText = data.expression;
+
+                    if (data.expression.includes("얼굴을 비추세요")) {
+                        faceAlert.style.display = "block";
+                        console.log("얼굴이 인식되지 않았습니다.");
+                    } else {
+                        faceAlert.style.display = "none";
+                    }
+                });
+        }, 1000);
+
+        // 감정 변화 로그 불러오기
+        setInterval(() => {
+            fetch("/expression_log")
+                .then(res => res.json())
+                .then(data => {
+                    const logDiv = document.getElementById("log");
+                    logDiv.innerHTML = data.log.map(line => `<div>${line}</div>`).join('');
+                });
+        }, 1500);
+
+        // 미세표정 감지 여부
+        setInterval(() => {
+            fetch("/microexpression")
+                .then(res => res.json())
+                .then(data => {
+                    const microDiv = document.getElementById("micro");
+                    if (data.micro) {
+                        microDiv.innerText = "⚡ 미세표정 감지!";
+                        setTimeout(() => {
+                            microDiv.innerText = "";
+                        }, 1500);
+                    }
+                });
+        }, 1000);
+
+        // 미세표정 통계
+        setInterval(() => {
+            fetch("/micro_stats")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("micro_count").innerText = data.count;
+                    document.getElementById("micro_percent").innerText = data.percent + "%";
+                    document.getElementById("total_changes").innerText = data.total;
+                });
+        }, 2000);
+    </script>
+    <a href="/" class="back-button">← 처음 화면으로 돌아가기</a>
+</body>
+</html>

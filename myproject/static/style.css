@@ -1,0 +1,223 @@
+/* ===========================================================
+   전체 배경 그라데이션 + 기본 폰트
+   =========================================================== */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: linear-gradient(135deg, #f0f9e8, #d0f0c0, #fcedd9);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  text-align: center;
+  padding: 30px 15px;
+  margin: 0;
+}
+
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===========================================================
+   제목 스타일 (h1) + 구분선 (divider)
+   =========================================================== */
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 80%;
+  height: 2px;
+  background: white;
+  opacity: 0.5;
+  margin: 8px auto 30px;
+  border-radius: 4px;
+}
+
+/* ===========================================================
+   카드 전체 박스 (card)
+   =========================================================== */
+.card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+
+  max-width: 800px;
+  margin: 0 auto 30px;
+  padding: 24px 30px;
+
+  display: flex;
+  align-items: center;      /* 카드 내부 콘텐츠(왼쪽/오른쪽 .card-content)를 세로 중앙으로 배치 */
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 300px;        /* 이미지(150px) + 패딩(24px×2) + 여유분 고려 */
+}
+
+/* 대칭 카드 클래스 */
+.symmetric-card {}
+
+/* ===========================================================
+   카드 내부: 왼쪽 콘텐츠 영역
+   =========================================================== */
+.card-content.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* 이미지가 카드 세로 중앙에 오도록 */
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  min-height: 0;
+}
+
+/* ===========================================================
+   카드 내부: 오른쪽 콘텐츠 영역
+   • justify-content: center 로 콘텐츠(이미지/폼)가 카드 세로 중앙
+   =========================================================== */
+.card-content.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* 블록 자체가 카드 세로 중앙에 위치 */
+  align-items: center;       /* 수평 중앙 정렬 */
+  gap: 10px;
+  padding: 8px;
+  min-height: 0;
+}
+
+/* ===========================================================
+   카드 내부 예시 이미지 (150×150)
+   =========================================================== */
+.card-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================================================
+   업로드 폼 (upload-form)
+   =========================================================== */
+form.upload-form {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  gap: 16px;
+  min-height: 180px;   /* 카드 높이(300px)에서 패딩(24×2) 고려 */
+  width: 100%;
+  max-width: 360px;
+}
+
+/* —————————————————————————————————————————————————————————————
+   ** 여기서부터: 업로드 폼 안의 라벨만 margin-top 추가 (텍스트 아래로)
+   ————————————————————————————————————————————————————————————— */
+form.upload-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 4px;
+  /* ↓ 이 값(예: 40px)을 조절해 라벨을 더/덜 아래로 이동할 수 있습니다. */
+  margin-top: 25px;
+}
+
+form.upload-form input[type="file"] {
+  font-size: 14px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* ===========================================================
+   웹캠 폼 (webcam-form)
+   =========================================================== */
+form.webcam-form {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  gap: 16px;
+  min-height: 180px;
+  width: 100%;
+  max-width: 360px;
+}
+
+/* —————————————————————————————————————————————————————————————
+   ** 여기서부터: 웹캠 폼 안의 라벨만 margin-top 추가 (텍스트 아래로)
+   ————————————————————————————————————————————————————————————— */
+form.webcam-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 4px;
+  /* ↓ 버튼보다 40px 아래로 내리기 */
+  margin-top: 40px;
+}
+
+/* ===========================================================
+   버튼 스타일 (btn-gradient)
+   =========================================================== */
+.btn-gradient {
+  padding: 10px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  /* 밝은 노랑 그라데이션 */
+  background: linear-gradient(135deg, #FFF9C4, #FFF176);
+  color: #333;  /* 진한 글자색으로 대비 */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  /* 밝은 노랑 계열 그림자 */
+  box-shadow: 0 4px 12px rgba(255, 241, 118, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px) scale(1.02);
+  /* 호버 시 조금 더 밝은 옐로우 강조 */
+  background: linear-gradient(135deg, #FFF59D, #FFEE58);
+  box-shadow: 0 6px 16px rgba(255, 241, 118, 0.5);
+}
+
+/* ===========================================================
+   반응형 조정 (모바일·태블릿)
+   =========================================================== */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .card-content.left,
+  .card-content.right {
+    gap: 8px;
+    padding: 12px 8px;
+  }
+  .card-image {
+    width: 120px;
+    height: 120px;
+  }
+  form.upload-form,
+  form.webcam-form {
+    min-height: 160px;
+    max-width: 280px;
+    padding: 16px 20px;
+  }
+  .btn-gradient {
+    padding: 8px 24px;
+    font-size: 14px;
+  }
+}

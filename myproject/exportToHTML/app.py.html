@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>app.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #8c8c8c; font-style: italic;}
+.s1 { color: #080808;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+app.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># 🔼 상단: 모듈 import, 모델 로딩, Flask 설정</span>
+<span class="s2">from </span><span class="s1">flask </span><span class="s2">import </span><span class="s1">Flask, render_template, request</span>
+<span class="s2">import </span><span class="s1">os</span>
+<span class="s2">import </span><span class="s1">torch</span>
+<span class="s2">import </span><span class="s1">cv2</span>
+<span class="s2">from </span><span class="s1">torchvision </span><span class="s2">import </span><span class="s1">transforms</span>
+<span class="s2">from </span><span class="s1">PIL </span><span class="s2">import </span><span class="s1">Image</span>
+<span class="s2">from </span><span class="s1">collections </span><span class="s2">import </span><span class="s1">Counter</span>
+<span class="s2">from </span><span class="s1">model </span><span class="s2">import </span><span class="s1">SimpleCNN</span>
+<span class="s2">from </span><span class="s1">utils </span><span class="s2">import </span><span class="s1">extract_frames, predict_single_image</span>
+
+<span class="s1">app = Flask(__name__)</span>
+<span class="s1">UPLOAD_FOLDER = </span><span class="s3">'uploads'</span>
+<span class="s1">os.makedirs(UPLOAD_FOLDER, exist_ok=</span><span class="s2">True</span><span class="s1">)</span>
+
+<span class="s1">label_map = {</span>
+    <span class="s4">0</span><span class="s1">: </span><span class="s3">&quot;happiness&quot;</span><span class="s1">,</span>
+    <span class="s4">1</span><span class="s1">: </span><span class="s3">&quot;disgust&quot;</span><span class="s1">,</span>
+    <span class="s4">2</span><span class="s1">: </span><span class="s3">&quot;repression&quot;</span><span class="s1">,</span>
+    <span class="s4">3</span><span class="s1">: </span><span class="s3">&quot;sadness&quot;</span><span class="s1">,</span>
+    <span class="s4">4</span><span class="s1">: </span><span class="s3">&quot;surprise&quot;</span>
+<span class="s1">}</span>
+
+<span class="s1">emoji_map = {</span>
+    <span class="s4">0</span><span class="s1">: </span><span class="s3">&quot;😄&quot;</span><span class="s1">,  </span><span class="s0"># happiness</span>
+    <span class="s4">1</span><span class="s1">: </span><span class="s3">&quot;🤢&quot;</span><span class="s1">,  </span><span class="s0"># disgust</span>
+    <span class="s4">2</span><span class="s1">: </span><span class="s3">&quot;😶&quot;</span><span class="s1">,  </span><span class="s0"># repression (억제된 감정 → 중립)</span>
+    <span class="s4">3</span><span class="s1">: </span><span class="s3">&quot;😢&quot;</span><span class="s1">,  </span><span class="s0"># sadness</span>
+    <span class="s4">4</span><span class="s1">: </span><span class="s3">&quot;😲&quot;   </span><span class="s0"># surprise</span>
+<span class="s1">}</span>
+
+
+<span class="s0"># 이미지 전처리</span>
+<span class="s1">transform = transforms.Compose([</span>
+    <span class="s1">transforms.Resize((</span><span class="s4">224</span><span class="s1">, </span><span class="s4">224</span><span class="s1">)),</span>
+    <span class="s1">transforms.ToTensor(),</span>
+    <span class="s1">transforms.Normalize(mean=[</span><span class="s4">0.5</span><span class="s1">]*</span><span class="s4">3</span><span class="s1">, std=[</span><span class="s4">0.5</span><span class="s1">]*</span><span class="s4">3</span><span class="s1">)</span>
+<span class="s1">])</span>
+
+<span class="s0"># 모델 불러오기</span>
+<span class="s1">model = SimpleCNN(num_classes=</span><span class="s4">5</span><span class="s1">)</span>
+<span class="s1">model.load_state_dict(torch.load(</span><span class="s3">'SimpleCNN_model.pth'</span><span class="s1">, map_location=</span><span class="s3">'cpu'</span><span class="s1">))</span>
+<span class="s1">model.eval()</span>
+
+<span class="s0"># 🔽 여기에 index() 함수와 함께 predict() 함수도 이어서 들어감</span>
+<span class="s1">@app.route(</span><span class="s3">'/'</span><span class="s1">)</span>
+<span class="s2">def </span><span class="s1">index():</span>
+    <span class="s2">return </span><span class="s1">render_template(</span><span class="s3">'index.html'</span><span class="s1">)</span>
+
+<span class="s0"># ✅ 이 자리에 네가 쓴 predict() 함수 전체 붙여넣기!</span>
+<span class="s1">@app.route(</span><span class="s3">'/predict'</span><span class="s1">, methods=[</span><span class="s3">'POST'</span><span class="s1">])</span>
+<span class="s2">def </span><span class="s1">predict():</span>
+    <span class="s1">file = request.files[</span><span class="s3">'file'</span><span class="s1">]</span>
+    <span class="s2">if </span><span class="s1">file:</span>
+        <span class="s1">filepath = os.path.join(UPLOAD_FOLDER, file.filename)</span>
+        <span class="s1">file.save(filepath)</span>
+
+        <span class="s0"># 1. 프레임 추출</span>
+        <span class="s1">frames = extract_frames(filepath, frame_skip=</span><span class="s4">10</span><span class="s1">)</span>
+
+        <span class="s0"># 2. 프레임별 예측 수행</span>
+        <span class="s1">predictions = [predict_single_image(model, frame, transform) </span><span class="s2">for </span><span class="s1">frame </span><span class="s2">in </span><span class="s1">frames]</span>
+
+        <span class="s0"># 3. 예측 결과 처리</span>
+        <span class="s2">if </span><span class="s1">predictions:</span>
+            <span class="s1">final_pred = Counter(predictions).most_common(</span><span class="s4">1</span><span class="s1">)[</span><span class="s4">0</span><span class="s1">][</span><span class="s4">0</span><span class="s1">]  </span><span class="s0"># 👈 여기!</span>
+            <span class="s1">label = label_map[final_pred]                           </span><span class="s0"># 👈 감정 이름</span>
+            <span class="s1">emoji = emoji_map[final_pred]                           </span><span class="s0"># 👈 감정 이모지</span>
+
+            <span class="s0"># ✅ 대표 프레임 저장 (가장 처음 예측한 프레임 사용)</span>
+            <span class="s1">preview_frame = frames[</span><span class="s4">0</span><span class="s1">]  </span><span class="s0"># 또는 final_pred와 일치한 프레임 중 하나 선택</span>
+            <span class="s1">preview_path = os.path.join(</span><span class="s3">&quot;static&quot;</span><span class="s1">, </span><span class="s3">&quot;preview.jpg&quot;</span><span class="s1">)</span>
+            <span class="s1">Image.fromarray(cv2.cvtColor(preview_frame, cv2.COLOR_BGR2RGB)).save(preview_path)</span>
+
+        <span class="s2">else</span><span class="s1">:</span>
+            <span class="s1">label = </span><span class="s3">&quot;prediction failed&quot;</span>
+            <span class="s1">emoji = </span><span class="s3">&quot;❌&quot;</span>
+            <span class="s1">preview_path = </span><span class="s2">None</span>
+
+        <span class="s0"># 4. 결과 페이지로 넘김</span>
+        <span class="s2">return </span><span class="s1">render_template(</span><span class="s3">'result.html'</span><span class="s1">, label=label, emoji=emoji, preview_image=</span><span class="s3">'preview.jpg'</span><span class="s1">)</span>
+
+    <span class="s2">return </span><span class="s1">render_template(</span><span class="s3">'index.html'</span><span class="s1">, result=</span><span class="s3">&quot;Upload failed&quot;</span><span class="s1">)</span>
+
+
+<span class="s0"># Flask 앱 실행 부분은 맨 아래</span>
+<span class="s2">if </span><span class="s1">__name__ == </span><span class="s3">'__main__'</span><span class="s1">:</span>
+    <span class="s1">app.run(debug=</span><span class="s2">True</span><span class="s1">)</span>
+</pre>
+</body>
+</html>
