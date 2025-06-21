@@ -47,14 +47,6 @@
 - CBAM (성능 저하로 최종 제외)
 
 ## 웹 구현 (Flask 기반)
-
-**Flask 코드는 myproject폴더 안에**
-[시연 영상]
-
-![KakaoTalk_20250621_154701538](https://github.com/user-attachments/assets/8ddc0b9f-e905-4bac-94d0-9f5ce6e07d66)
-
-![KakaoTalk_20250621_160503556](https://github.com/user-attachments/assets/dbe5fd04-92b4-4115-8ecb-9cbe6dfae200)
-
 ### 비디오 분석
 - 대표 프레임 추출
 - 감정 변화 통계 제공:
@@ -65,6 +57,16 @@
 ### 웹캠 실시간 분석
 - 0.4초 단위로 감정 예측
 - 실시간 화면 출력 및 로그 저장
+
+
+**Flask 코드는 myproject폴더 안에**
+[시연 영상]
+
+![KakaoTalk_20250621_154701538](https://github.com/user-attachments/assets/8ddc0b9f-e905-4bac-94d0-9f5ce6e07d66)
+
+![KakaoTalk_20250621_160503556](https://github.com/user-attachments/assets/dbe5fd04-92b4-4115-8ecb-9cbe6dfae200)
+
+
 
 ## 활용 방안
 - **심리 상담 및 임상 진단**: 진짜 감정 탐지, 치료 반응 모니터링
