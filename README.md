@@ -53,7 +53,7 @@
 
 ![KakaoTalk_20250621_154701538](https://github.com/user-attachments/assets/8ddc0b9f-e905-4bac-94d0-9f5ce6e07d66)
 
-![KakaoTalk_20250621_160503556](https://github.com/user-attachments/assets/79c57232-332a-4845-bf8c-dd0b07c7c3b0)
+![KakaoTalk_20250621_160503556](https://github.com/user-attachments/assets/dbe5fd04-92b4-4115-8ecb-9cbe6dfae200)
 
 ### 비디오 분석
 - 대표 프레임 추출
