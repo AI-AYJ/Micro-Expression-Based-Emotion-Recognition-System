@@ -60,7 +60,7 @@
 
 
 **Flask 코드는 myproject폴더 안에**
-[시연 영상]
+# [시연 영상]
 
 ![KakaoTalk_20250621_154701538](https://github.com/user-attachments/assets/8ddc0b9f-e905-4bac-94d0-9f5ce6e07d66)
 
