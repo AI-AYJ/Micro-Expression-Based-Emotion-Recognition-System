@@ -49,8 +49,9 @@
 ## 웹 구현 (Flask 기반)
 
 **Flask 코드는 myproject폴더 안에
-![image](https://github.com/user-attachments/assets/199fb914-3091-405b-a086-defcd2caa359)
 
+
+![KakaoTalk_20250621_154701538](https://github.com/user-attachments/assets/8ddc0b9f-e905-4bac-94d0-9f5ce6e07d66)
 
 ### 비디오 분석
 - 대표 프레임 추출
