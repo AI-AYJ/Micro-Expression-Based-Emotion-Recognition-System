@@ -64,7 +64,8 @@
 
 ![KakaoTalk_20250621_154701538](https://github.com/user-attachments/assets/8ddc0b9f-e905-4bac-94d0-9f5ce6e07d66)
 
-![KakaoTalk_20250621_160503556](https://github.com/user-attachments/assets/dbe5fd04-92b4-4115-8ecb-9cbe6dfae200)
+![KakaoTalk_20251102_150054783](https://github.com/user-attachments/assets/a8c3e85e-4c42-4abb-abb2-41ee65c67d90)
+
 
 
 
